@@ -1,4 +1,16 @@
 
+###get ride of initial screen on CentOS 7
+#http://grokbase.com/t/centos/centos/1573cgs19s/get-ride-of-initial-screen-on-centos-7
+/etc/gdm/custom.conf
+
+[daemon]
+InitialSetupEnable=False
+##Script Helpfull
+ls -lhaF | grep ^l   # list links
+ls -lhaF | grep ^d   # list directories
+ls -lhaF | grep ^-   # list files
+#############################################
+
 ###IPMI Command
 for ((i=0; i<${num_computes}; i++)) ; do
 ipmitool -E -I lanplus -H ${c_bmc[$i]} -U ${bmc_username} chassis power reset

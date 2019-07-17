@@ -1,0 +1,10 @@
+cat > /etc/sysconfig/network-scripts/ifcfg-eth0 <<EOF
+DEVICE=eth0
+ONBOOT=yes
+BOOTPROTO=static
+IPV6INIT=no
+GATEWAY=10.0.0.1
+NETMASK=255.255.0.0
+EOF
+first="$(/sbin/ip -o -4 addr list eth0 | awk '{print $4}' | cut -d/ -f1)"
+echo "IPADDR=$first" >> /etc/sysconfig/network-scripts/ifcfg-eth0

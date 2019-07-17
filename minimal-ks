@@ -1,0 +1,43 @@
+%packages --nobase --ignoremissing --excludedocs
+# @ Development Libraries - not available in rhel6
+# @ Development Tools
+# @ Administration Tools
+# @ System Tools - not available in rhel6
+# @ Legacy Software Development
+# @ Legacy Software Support
+# @ Editors - not available in rhel6
+# @ Text-based Internet - not available in rhel6
+# @ Mail Server - not available in rhel6
+-rdma
+-firewalld
+-iwl*firmware
+-ivtv-firmware
+-alsa-firmware
+-alsa-tools-firmware
+-libertas*
+-kexec-tools
+-NetworkManager*
+-plymouth*
+-postfix
+-open-vm-tools
+-virt-what
+-python-firewallwget
+-iptables
+-GeoIP
+-mozjs17
+-btrfs-progs
+-kexec-tools
+-NetworkManager*
+-plymouth*
+-postfix
+-kexec-tools
+nfs-utils
+yum-utils
+curl
+ruby
+openssh
+openssh-clients
+openssh-server
+yum
+$SNIPPET('puppet_install_if_enabled')
+%end

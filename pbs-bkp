@@ -1,0 +1,28 @@
+pbsnodes -av
+qmgr -c “p s”
+qstat -answ1 / qstat -fx / qstat -xH
+qmgr -c "print node @default"
+cp -rp $PBS_HOME/sched_priv/ /tmp/pbs_backup/sched_priv.new
+cp /etc/pbs.conf /tmp/pbs_backup/pbs.conf.backup
+qmgr -c "print sched" > /tmp/pbs_backup/sched_attrs.backup
+qmgr -c "print hook" > /tmp/pbs_backup/hooks.backup
+
+
+pbs_rstat -f > /tmp/pbs_backup/reservations
+
+cp $PBS_HOME/mom_priv/config /tmp/pbs_backup/config.backup
+
+mkdir /tmp/pbs_backup/mom_configs
+$PBS_EXEC_OLD/sbin/pbs_mom -s list | egrep -v '^PBS' | while read file
+do
+ $PBS_EXEC_OLD/sbin/pbs_mom -s show file > /tmp/pbs_backup/mom_configs/$file
+done
+
+
+cd $PBS_HOME/..
+tar -cvf /tmp/pbs_backup/PBS_HOME_tarbackup.tar $PBS_HOME
+
+cd $PBS_EXEC_OLD/..
+tar -cvf /tmp/pbs_backup/PBS_EXEC_OLD_tarbackup.tar $PBS_EXEC_OLD
+
+job scripts
